@@ -2,10 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ActivityIndicator, Modal, ScrollView } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { Ionicons } from '@expo/vector-icons';
-// 1. IMPORTAMOS EL ALMACENAMIENTO
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// --- ESTILO RETRO ---
 const drawnMapStyle = [
   { "elementType": "geometry", "stylers": [{ "color": "#ebe3cd" }] },
   { "elementType": "labels.text.fill", "stylers": [{ "color": "#523735" }] },
@@ -34,12 +32,8 @@ export default function App() {
   const [menuVisible, setMenuVisible] = useState(false);
   
   const mapRef = useRef(null);
-
-  // ⚠️ REVISA TU IP LOCAL
   const API_URL = 'http://192.168.0.12:5000/historia'; 
   const STORAGE_KEY = '@bitacora_viaje_v1'; // Nombre del archivo "JSON" interno
-
-  // --- 2. CARGAR DATOS AL INICIAR LA APP ---
   useEffect(() => {
       cargarDatosGuardados();
   }, []);
@@ -167,8 +161,6 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      
-      {/* MAPA */}
       <MapView
         ref={mapRef}
         style={styles.map}
